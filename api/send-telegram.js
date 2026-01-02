@@ -29,7 +29,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { formData, lang = 'ru' } = req.body;
+    const { formData } = req.body;
 
     // Validate required fields
     if (!formData || !formData.name || !formData.phone) {
@@ -47,61 +47,61 @@ export default async function handler(req, res) {
 
     // Format the message
     const typeText = formData.type === 'song' 
-      ? (lang === 'ru' ? '🎵 Персональная Песня (700 MDL)' : '🎵 Piesă Personalizată (700 MDL)')
-      : (lang === 'ru' ? '📝 Музыкальный Стих (500 MDL)' : '📝 Poezie Muzicală (500 MDL)');
+      ? '🎵 Персональная Песня (3000 руб)'
+      : '📝 Музыкальный Стих (2000 руб)';
 
-    // Style mapping with full translations
+    // Style mapping
     const styleMap = {
-      'Pop': lang === 'ru' ? 'Поп-музыка' : 'Pop',
-      'HipHop': lang === 'ru' ? 'Хип-хоп / Рэп' : 'Hip-Hop / Rap',
-      'Chanson': lang === 'ru' ? 'Шансон' : 'Șanson',
-      'Rock': lang === 'ru' ? 'Рок' : 'Rock',
-      'RnB': lang === 'ru' ? 'R&B / Соул' : 'R&B / Soul',
-      'Jazz': lang === 'ru' ? 'Джаз' : 'Jazz',
-      'Classic': lang === 'ru' ? 'Классика' : 'Clasică',
-      'Custom': formData.customStyle || (lang === 'ru' ? 'Свой вариант' : 'Alt stil')
+      'Pop': 'Поп-музыка',
+      'HipHop': 'Хип-хоп / Рэп',
+      'Chanson': 'Шансон',
+      'Rock': 'Рок',
+      'RnB': 'R&B / Соул',
+      'Jazz': 'Джаз',
+      'Classic': 'Классика',
+      'Custom': formData.customStyle || 'Свой вариант'
     };
 
-    // Mood mapping with full translations
+    // Mood mapping
     const moodMap = {
-      'Romantic': lang === 'ru' ? 'Романтичное ❤️' : 'Romantic ❤️',
-      'Touching': lang === 'ru' ? 'Трогательное (до слез) 🥺' : 'Emoționant (lacrimi) 🥺',
-      'Fun': lang === 'ru' ? 'Веселое / Драйв 🔥' : 'Vesel / Drive 🔥',
-      'Funny': lang === 'ru' ? 'С приколом / Смешное 😂' : 'Amuzant / Funny 😂',
-      'Epic': lang === 'ru' ? 'Эпичное / Торжественное 🌟' : 'Epic / Solemn 🌟'
+      'Romantic': 'Романтичное ❤️',
+      'Touching': 'Трогательное (до слез) 🥺',
+      'Fun': 'Веселое / Драйв 🔥',
+      'Funny': 'С приколом / Смешное 😂',
+      'Epic': 'Эпичное / Торжественное 🌟'
     };
 
     const styleText = formData.style ? (styleMap[formData.style] || formData.style) : '-';
     const moodText = formData.mood ? (moodMap[formData.mood] || formData.mood) : '-';
 
     // Build the message with proper formatting (escape user input to prevent Markdown breaking)
-    let message = `🆕 *${lang === 'ru' ? 'НОВАЯ ЗАЯВКА' : 'CERERE NOUĂ'}*\n\n`;
+    let message = `🆕 *НОВАЯ ЗАЯВКА*\n\n`;
     
-    message += `*${lang === 'ru' ? 'ТИП ЗАКАЗА' : 'TIP COMANDĂ'}:* ${typeText}\n\n`;
+    message += `*ТИП ЗАКАЗА:* ${typeText}\n\n`;
     
-    message += `*${lang === 'ru' ? 'КОНТАКТНАЯ ИНФОРМАЦИЯ' : 'INFORMAȚII CONTACT'}*\n`;
-    message += `👤 *${lang === 'ru' ? 'Имя' : 'Nume'}:* ${escapeMarkdown(formData.name) || '-'}\n`;
-    message += `📱 *${lang === 'ru' ? 'Телефон' : 'Telefon'}:* ${escapeMarkdown(formData.phone) || '-'}\n`;
-    message += `💬 *${lang === 'ru' ? 'Telegram / Почта' : 'Telegram / Email'}:* ${escapeMarkdown(formData.telegram) || '-'}\n`;
-    message += `🎯 *${lang === 'ru' ? 'Для кого' : 'Pentru cine'}:* ${escapeMarkdown(formData.recipient) || '-'}\n\n`;
+    message += `*КОНТАКТНАЯ ИНФОРМАЦИЯ*\n`;
+    message += `👤 *Имя:* ${escapeMarkdown(formData.name) || '-'}\n`;
+    message += `📱 *Телефон:* ${escapeMarkdown(formData.phone) || '-'}\n`;
+    message += `💬 *Telegram / Почта:* ${escapeMarkdown(formData.telegram) || '-'}\n`;
+    message += `🎯 *Для кого:* ${escapeMarkdown(formData.recipient) || '-'}\n\n`;
     
-    message += `*${lang === 'ru' ? 'ПАРАМЕТРЫ ЗАКАЗА' : 'PARAMETRI COMANDĂ'}*\n`;
-    message += `💭 *${lang === 'ru' ? 'Настроение / Вайб' : 'Dispoziție / Vibe'}:* ${moodText}\n`;
-    message += `🎵 *${lang === 'ru' ? 'Стиль музыки' : 'Stil muzical'}:* ${escapeMarkdown(styleText)}\n\n`;
+    message += `*ПАРАМЕТРЫ ЗАКАЗА*\n`;
+    message += `💭 *Настроение / Вайб:* ${moodText}\n`;
+    message += `🎵 *Стиль музыки:* ${escapeMarkdown(styleText)}\n\n`;
     
-    message += `*${lang === 'ru' ? 'ИСТОРИЯ / ФАКТЫ' : 'POVESTE / FAPTE'}*\n`;
+    message += `*ИСТОРИЯ / ФАКТЫ*\n`;
     message += `${escapeMarkdown(formData.story) || '-'}\n\n`;
     
     message += `━━━━━━━━━━━━━━━━\n`;
-    const dateTime = new Date().toLocaleString(lang === 'ru' ? 'ru-RU' : 'ro-RO', { 
-      timeZone: 'Europe/Chisinau', 
+    const dateTime = new Date().toLocaleString('ru-RU', { 
+      timeZone: 'Europe/Moscow', 
       day: '2-digit', 
       month: '2-digit', 
       year: 'numeric', 
       hour: '2-digit', 
       minute: '2-digit' 
     });
-    message += `🕐 ${lang === 'ru' ? 'Время заявки' : 'Timpul cererii'}: ${dateTime}`;
+    message += `🕐 Время заявки: ${dateTime}`;
 
     message = message.trim();
 
