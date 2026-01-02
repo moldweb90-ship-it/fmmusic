@@ -271,7 +271,7 @@ const FlowerBoxLanding = () => {
       btnSubmit: "ОТПРАВИТЬ ЗАЯВКУ",
       agree: "Нажимая кнопку, ты соглашаешься на обработку данных.",
       modalTitle: "ЗАЯВКА УЛЕТЕЛА!",
-      modalDesc: "Мы приняли твою заявку. Скоро Валерий Меладзе выйдет на связь в Telegram для уточнения деталей.",
+      modalDesc: "Мы приняли твою заявку. Скоро Владимир Высоцкий выйдет на связь в Telegram для уточнения деталей.",
       modalBtn: "ПОНЯЛ, ЖДУ",
       footerCity: "Нижний Новгород, Россия",
       footerDept: "Отдел Музыки и Поэзии",
@@ -608,6 +608,19 @@ const FlowerBoxLanding = () => {
           animation: price-glow 3s ease-in-out infinite, gradient-shift 3s ease infinite;
           background-size: 200% 100%;
         }
+        
+        @keyframes equalizer-wave {
+          0%, 100% { height: 25%; }
+          20% { height: 90%; }
+          40% { height: 35%; }
+          60% { height: 75%; }
+          80% { height: 50%; }
+        }
+        
+        .equalizer-bar {
+          min-height: 20%;
+          box-shadow: 0 0 4px rgba(216, 27, 96, 0.6);
+        }
 
         /* Paper Texture for Pushkin Block */
         .paper-texture {
@@ -630,7 +643,18 @@ const FlowerBoxLanding = () => {
             </div>
             <div className="flex items-center gap-2 mt-1">
                <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-bold">{currentT.brandSub}</span>
-               <span className="w-2 h-2 bg-brand rounded-full animate-pulse shadow-[0_0_10px_#D81B60]"></span>
+               <div className="flex items-end gap-[2px] h-3">
+                 {[...Array(5)].map((_, i) => (
+                   <div
+                     key={i}
+                     className="w-[2px] bg-brand rounded-full equalizer-bar"
+                     style={{
+                       animation: `equalizer-wave ${0.4 + i * 0.1}s ease-in-out infinite`,
+                       animationDelay: `${i * 0.15}s`
+                     }}
+                   />
+                 ))}
+               </div>
             </div>
           </button>
 
@@ -767,12 +791,12 @@ const FlowerBoxLanding = () => {
               </ul>
             </div>
             {/* Visual Representation of the Card */}
-            <div className="relative h-64 md:h-80 bg-gradient-to-br from-gray-900 to-black rounded-[2.5rem] border border-gray-800 flex items-center justify-center shadow-2xl overflow-hidden">
+            <div className="relative h-64 md:h-80 bg-gradient-to-br from-gray-900 to-black rounded-[2.5rem] border border-gray-800 flex items-center justify-center shadow-2xl overflow-visible md:overflow-hidden">
                {/* Background Flowers Effect */}
                <div className="absolute top-0 right-0 w-40 h-40 bg-pink-600/20 blur-[50px] rounded-full"></div>
                
                {/* The Card */}
-               <div className="relative bg-white text-black w-48 h-64 md:w-56 md:h-72 rounded-xl shadow-2xl p-6 flex flex-col items-center justify-between transform rotate-[-5deg] hover:rotate-0 transition-all duration-500">
+               <div className="relative bg-white text-black w-48 h-64 md:w-56 md:h-72 rounded-xl shadow-2xl p-6 flex flex-col items-center justify-between transform rotate-[-5deg] hover:rotate-0 transition-all duration-500 z-10 md:z-auto" style={{ boxShadow: '0 0 30px rgba(216, 27, 96, 0.4), 0 0 60px rgba(216, 27, 96, 0.2), 0 10px 40px rgba(0, 0, 0, 0.3)' }}>
                   <div className="text-xs font-bold uppercase tracking-widest">Цветочная Мафия</div>
                   <div className="text-center">
                     <h4 className="font-header text-xl mb-1">СКАНИРУЙ МЕНЯ</h4>
