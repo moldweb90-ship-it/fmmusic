@@ -680,7 +680,7 @@ const FlowerBoxLanding = () => {
       </a>
 
       {/* HERO SECTION */}
-      <header className="relative pt-20 md:pt-36 pb-0 md:pb-20 px-4 flex flex-col items-center justify-center text-center min-h-[70vh] md:min-h-[90vh] bg-[url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat rounded-b-[3rem] overflow-hidden">
+      <header className="relative pt-28 md:pt-36 pb-0 md:pb-20 px-4 flex flex-col items-center justify-center text-center min-h-[80vh] md:min-h-[90vh] bg-[url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat rounded-b-[3rem] overflow-hidden">
         <div className="absolute inset-0 bg-black/85"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         
