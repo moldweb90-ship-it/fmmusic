@@ -57,7 +57,7 @@ export default async function handler(req, res) {
 
     // Format the message
     const typeText = formData.type === 'song' 
-      ? '🎵 Персональная Песня (3000 руб)'
+      ? '🎵 Персональная Песня (2500 руб)'
       : '📝 Музыкальный Стих (2000 руб)';
 
     // Style mapping

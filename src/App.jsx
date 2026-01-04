@@ -1146,7 +1146,7 @@ const FlowerBoxLanding = () => {
                     onClick={() => setFormData(prev => ({ ...prev, type: 'song' }))}
                     className={`relative p-4 md:p-5 rounded-3xl border flex flex-col items-center gap-2 transition-all group overflow-hidden ${formData.type === 'song' ? 'bg-brand/20 border-brand text-white shadow-[0_0_15px_rgba(216,27,96,0.3)]' : 'bg-black border-gray-700 text-gray-500 hover:border-gray-500'}`}
                   >
-                    <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-2xl">3000 руб</div>
+                    <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-2xl">2500 руб</div>
                     <Music size={28} className={formData.type === 'song' ? 'text-brand' : 'group-hover:text-white'} />
                     <span className="text-xs font-bold uppercase text-center mt-1">{currentT.typeSong}</span>
                   </button>
@@ -1366,7 +1366,7 @@ const FlowerBoxLanding = () => {
                       onClick={() => setFormData(prev => ({ ...prev, type: 'song' }))}
                       className={`relative p-4 md:p-5 rounded-3xl border flex flex-col items-center gap-2 transition-all group overflow-hidden ${formData.type === 'song' ? 'bg-brand/20 border-brand text-white shadow-[0_0_15px_rgba(216,27,96,0.3)]' : 'bg-black border-gray-700 text-gray-500 hover:border-gray-500'}`}
                     >
-                      <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-2xl">3000 руб</div>
+                      <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-2xl">2500 руб</div>
                       <Music size={28} className={formData.type === 'song' ? 'text-brand' : 'group-hover:text-white'} />
                       <span className="text-xs font-bold uppercase text-center mt-1">{currentT.typeSong}</span>
                     </button>
