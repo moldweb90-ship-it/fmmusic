@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Play, Pause, Music, Zap, Heart, Mic, QrCode, Send, Smartphone, Disc, X, Phone, MessageCircle, Feather, Star, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, CheckCircle, ShieldCheck, Clock, Smile, ArrowRight } from 'lucide-react';
 
-// API endpoint URL - работает на Vercel автоматически через /api/send-telegram
-const API_URL = '/api/send-telegram';
+// API endpoint URL - используем полный URL на Vercel для работы с GitHub Pages
+// Если сайт на Vercel - будет работать через относительный путь
+// Если сайт на GitHub Pages - будет использовать полный URL на Vercel
+const API_URL = window.location.hostname === 'fmvibe.ru' 
+  ? 'https://fmmusic-theta.vercel.app/api/send-telegram'
+  : '/api/send-telegram';
 
 const FlowerBoxLanding = () => {
   const [isPlaying, setIsPlaying] = useState(null);
