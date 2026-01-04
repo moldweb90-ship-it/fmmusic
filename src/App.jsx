@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Play, Pause, Music, Zap, Heart, Mic, QrCode, Send, Smartphone, Disc, X, Phone, MessageCircle, Feather, Star, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, CheckCircle, ShieldCheck, Clock, Smile, ArrowRight } from 'lucide-react';
 
+// API endpoint URL - работает на Vercel автоматически через /api/send-telegram
+const API_URL = '/api/send-telegram';
+
 const FlowerBoxLanding = () => {
   const [isPlaying, setIsPlaying] = useState(null);
   const [isMagicPlaying, setIsMagicPlaying] = useState(false); // State for the "Magic" section player
@@ -385,14 +388,13 @@ const FlowerBoxLanding = () => {
     
     try {
       // Send form data to API endpoint
-      const response = await fetch('/api/send-telegram', {
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           formData,
-          lang: 'ru',
         }),
       });
 

@@ -1,0 +1,11 @@
+{
+  "name": "fmvibe-telegram-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "API endpoint for sending Telegram messages from fmvibe.ru",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+

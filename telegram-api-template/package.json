@@ -1,0 +1,11 @@
+{
+  "name": "telegram-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "API endpoint for sending Telegram messages",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+

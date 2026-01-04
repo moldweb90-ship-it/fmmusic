@@ -23,12 +23,11 @@ function escapeMarkdown(text) {
 }
 
 export default async function handler(req, res) {
-  // Enable CORS для всех доменов
+  // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight request
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
