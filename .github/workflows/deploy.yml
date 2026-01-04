@@ -31,8 +31,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Build
-        run: npm run build
+      - name: Set base path and build
+        run: |
+          if [ -f "public/CNAME" ]; then
+            export VITE_BASE_PATH=/
+          else
+            export VITE_BASE_PATH=/fmmusic/
+          fi
+          npm run build
       
       - name: Copy CNAME and .nojekyll to dist
         run: |
