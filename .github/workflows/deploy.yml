@@ -34,8 +34,10 @@ jobs:
       - name: Build
         run: npm run build
       
-      - name: Copy CNAME to dist
-        run: cp public/CNAME dist/CNAME || echo "CNAME not found, skipping"
+      - name: Copy CNAME and .nojekyll to dist
+        run: |
+          cp public/CNAME dist/CNAME || echo "CNAME not found, skipping"
+          cp public/.nojekyll dist/.nojekyll || echo ".nojekyll not found, skipping"
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
